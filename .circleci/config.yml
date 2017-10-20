@@ -38,11 +38,6 @@ jobs:
             - ~/.m2
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      # grant permissions
-      - run:
-          name: chmod permissions
-          command: chmod +x ./gradlew
-
       # run tests! and gen code coverage
       - run: ./gradlew clean test jacocoTestReport
 
@@ -58,10 +53,6 @@ jobs:
 
       - store_artifacts:
           path: ~/junit
-          
-     - run:
-      name: chmod permissions
-      command: chmod +x ./gradlew     
 
       - run:
           name: Send to CodeCov
